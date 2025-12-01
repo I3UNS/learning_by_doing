@@ -2,6 +2,12 @@ body{
     text-align: center;
 }
 
-#clock{
+body, #clock{
     background-color: lightgray;
+}
+
+#digital-clock{
+    display: block;
+    margin: 1.8rem auto;
+    background-color: lightslategrey;
 }

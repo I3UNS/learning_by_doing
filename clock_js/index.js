@@ -7,16 +7,25 @@ let radius = width/2;
 
 let canvas;
 let context;
+let digitalCanvas;
 
 window.onload = function(){
+    
+    //Analog Clock
     canvas = document.getElementById("clock");
     canvas.width = width;
     canvas.height = height;
     context = canvas.getContext("2d");
 
+    //Digital Clock
+    digitalCanvas = document.getElementById("digital-clock");
+    digitalCanvas.width = width;
+    digitalCanvas.height = height/4;
+
     context.translate(radius, radius);
     radius *= 0.9;
     drawClock();
+    drawDigitalClock();
 }
 
 function drawClock(){
@@ -60,11 +69,13 @@ function drawNumbers(){
 }
 
 function drawTime(){
+
     let now = new Date;
     let hour = now.getHours() % 12;
     let minute = now.getMinutes();
     let second = now.getSeconds();
 
+    //Analog Clock Format
     let secondAngle = second * Math.PI/30; //60 seconds * PI/30 = 2*PI
 
     context.strokeStyle = "red";
@@ -97,4 +108,14 @@ function drawHand(angle, length, width){
     context.stroke();
     context.rotate(-angle);
 
+}
+
+function drawDigitalClock(){
+    const div = document.createElement("p");
+    const divContent = document.createTextNode("HI");
+
+    div.append(divContent);
+
+    const currDiv = document.getElementById("digital-clock");
+    document.body.insertBefore(div, currDiv);
 }
